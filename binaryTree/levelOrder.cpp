@@ -21,6 +21,7 @@ using namespace std;
         };
 
         void printLevelOrder(Node* root){
+        
 
 
             if(root==NULL){
@@ -31,6 +32,7 @@ using namespace std;
 
             q.push(root);  //enqueue the root 
             q.push(NULL);
+        
 
             while(!q.empty()){
                 //print  first of queue and remove it from queue

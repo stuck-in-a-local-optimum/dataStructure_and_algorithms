@@ -144,6 +144,63 @@ using namespace std;
             return node;
         }
 
+        int treeHeight(Node* root){
+            if(NULL==root){
+                return 0;
+            }
+
+            int lHeight = treeHeight(root->left);
+            int rHeight = treeHeight(root->right);
+
+            return max(lHeight, rHeight)+1;
+        }
+
+
+        /*
+        DIAMETER-> Number of nodes in the longest path between any 2 leaves
+        case 1: either diameter is through the root node
+            then diameter = height(root->left)+ height(root->right)+1;
+
+        case 2: or not through root node
+            then diameter = max(diameter(root->left), diameter(root->right));
+        
+        final result is max of these two cases!
+
+        COMPLEXITY = O(n^2)
+
+        */
+
+       int treeDiameter(Node* root){
+           if(root==NULL){
+               return 0;
+           }
+
+           int lHeight = treeHeight(root->left);
+           int rHeight = treeHeight(root->right);
+           int currDiameter = lHeight+rHeight+1;
+
+           int lDiameter = treeDiameter(root->left);
+           int rDiameter = treeDiameter(root->right);
+
+           return max( currDiameter, max(lDiameter, rDiameter));
+       }
+
+       int optimisedTreeDiameter(Node* root, int* height){
+           if(root==NULL){
+               return 0;
+           }
+
+           int lH =0; int rH=0;
+
+           int lDiameter = optimisedTreeDiameter(root->left, &lH);
+           int rDiameter  = optimisedTreeDiameter(root->right, &rH);
+
+           int currDiameter = lH+rH+1;
+           *height = max(lH, rH)+1;
+
+           return max(currDiameter, max(lDiameter, rDiameter));
+       }
+
 
 int main(){
 
@@ -177,6 +234,13 @@ int main(){
         Node* rootNode2 =  buildTree2(postOrder, inOrder, 0, 4);
 
         inOrderPrint(rootNode2);
+        cout<<endl;
+        cout<<treeHeight(root)<<endl;
+
+        cout<<treeDiameter(root)<<endl;
+
+        int height = 0;
+        cout<<optimisedTreeDiameter(root, &height)<<endl;
 
         
         

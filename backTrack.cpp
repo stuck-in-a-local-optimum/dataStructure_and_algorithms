@@ -10,6 +10,13 @@ bool isSafe(int** arr, int x, int y, int n){
     return false;
 }
 
+
+/*
+A rat stuck in a 0, 1 maze, he wants to reach last cell, 0 cell is obstacle, 1 is safe
+output the path of rat with 1 cells if possible to reach at the end
+
+*/
+
 bool ratInMaze(int** arr, int x, int y, int n, int** solArr){
 
     if(x==n-1 && y==n-1){
@@ -19,21 +26,26 @@ bool ratInMaze(int** arr, int x, int y, int n, int** solArr){
 
     if(isSafe(arr, x, y, n)){
         solArr[x][y] = 1;
+
+        //if path exist from down 
         if(ratInMaze(arr, x+1, y, n, solArr)){
             return true;
 
         }
+
+        //if path exist from right
         if(ratInMaze(arr, x, y+1, n, solArr)){
             return true;
 
-        }
-
+        
+        //if we can't find path by both above ways then reset the cell  (wrong choice!)
         solArr[x][y] = 0;  //backtracking!!
         return false;
 
         
     }
     return false;
+}
 }
 
 

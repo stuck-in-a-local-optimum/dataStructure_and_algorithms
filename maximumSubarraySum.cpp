@@ -37,8 +37,6 @@ int main(){
         for(int startIndex=0; startIndex<endIndex; startIndex++){
             tempSum = cummArr[endIndex]-cummArr[startIndex];
             maxSum = max(tempSum, maxSum);
-
-
         }
 
     }

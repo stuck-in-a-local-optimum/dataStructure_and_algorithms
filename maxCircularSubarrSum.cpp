@@ -30,7 +30,7 @@ int main(){
 
         case2: wraping required!
         solution: 
-        maxSubArrsum = total sum of array - sum of non=contributing elements
+        maxSubArrsum = total sum of array - sum of non-contributing elements
 
         At the end we need to take max of both cases
     */
