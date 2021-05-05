@@ -1,13 +1,15 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <string>
 #include <queue>
-
 using namespace std;
 
+//COMPILE USING: g++ -std=c++11 heapIntro.cpp -o t
 
-    void maxHeapify(int arr[], int n, int i){
+
+    void maxHeapify(vector<int> &arr, int i){
+
+      int n = arr.size();
         int lChild = 2*i+1;
         int rChild = 2*i+2;
 
@@ -25,14 +27,15 @@ using namespace std;
 
         if( maxIdx !=i){
             swap( arr[i], arr[maxIdx]);
-            maxHeapify( arr, n, maxIdx);
+            maxHeapify( arr, maxIdx);
 
         }   
 
     }
 
 
-      void minHeapify(int arr[],int n, int i){
+      void minHeapify(vector<int> &arr, int i){
+      int n = arr.size();
         int lChild = 2*i+1;
         int rChild = 2*i+2;
 
@@ -50,37 +53,52 @@ using namespace std;
 
         if( minIdx !=i){
             swap( arr[i], arr[minIdx]);
-            minHeapify( arr, n, minIdx);
+            minHeapify( arr, minIdx);
 
         } 
       }  
 
     
-    void buildHeap(int arr[], int n, bool ismaxHeap){
+    void buildHeap(vector<int> &arr, bool ismaxHeap){
+                        int n = arr.size();
         int startIdx = n/2 -1;
         for(int i= startIdx; i>=0; i--){
             if(ismaxHeap){
-            maxHeapify(arr,n, i);
+            maxHeapify(arr,0);
         }
         else{
-            minHeapify(arr, n,i);
+            minHeapify(arr,0);
         }
         }
 
     }
 
-    void displayHeap(int heap[], int n){
+    void displayHeap(vector<int> &heap){
+        int n = heap.size();
+
         for(int i=0; i<n; i++){
             cout<<heap[i]<<" ";
         }
     }
 
 
+            // void heapSort(vector<int> &arr, bool isMaxHeap){
+            //     int n = arr.size();
 
+            //     buildHeap(arr, isMaxHeap);
 
+            //     for(int i=n-1; i>=1; i--){
+            //         swap( arr[0] , arr[i]);
+            //         if(isMaxHeap){
+            //         maxHeapify(arr, 0);
+            //     }
+            //     else{
+            //         minHeapify(arr, 0);
+            //     }
 
-
-
+                
+            // }
+            // }
 
 
 int main(){
@@ -109,17 +127,18 @@ int main(){
     // pqMin.pop();
     // cout<< pqMin.top()<<endl;
 
-    int arr1[] = { 1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17 };
-        int arr2[] = { 1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17 };
+    vector<int> arr1{ 1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17 };
+    vector<int> arr2{ 1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17 };
 
-    buildHeap(arr1,11,  true);
+    buildHeap(arr1, true);
 
-    displayHeap(arr1, 11);
+    displayHeap(arr1);
 
     cout<<endl;
-    buildHeap(arr2,11,  false);
+    buildHeap(arr2, false);
 
-    displayHeap(arr2, 11);
+    displayHeap(arr2);
+    cout<<endl;
 
         
 
