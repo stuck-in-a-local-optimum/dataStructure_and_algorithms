@@ -7,7 +7,7 @@ using namespace std;
 
 void addEdge(vector<int> g[], int u, int v, bool isDirected){
     g[u].push_back(v);
-    if(isDirected){
+    if(!isDirected){
     g[v].push_back(u);
     }
 }
