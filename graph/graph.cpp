@@ -43,12 +43,58 @@ void bfs(int start, int n, vector<int> g[]){
 
 }
 
+
 void addEdge(vector<int> g[], int u, int v, bool isDirected){
     g[u].push_back(v);
 
     if(!isDirected){
     g[v].push_back(u);
 }
+}
+
+//-------CYCLE DETECTION IN DIRECTED GRAPH--------
+
+bool isCyclicUtility(vector<int> g[], int n, int node, vector<int> isvisited){
+    if(isvisited[node]==2){  //if the current node was already is in processing then cycle!
+        return true;
+
+    }
+
+    isvisited[node] =2; //set the node in processing
+
+    vector<int> :: iterator nbr;
+    for(nbr = g[node].begin(); nbr!=g[node].end(); nbr++){
+        if(isvisited[*nbr]!=1){
+            if(isCyclicUtility( g, n, *nbr, isvisited)){
+                return true;
+
+            }
+        }
+    }
+
+    isvisited[node] = 1; //after visiged all its nbrs, node is processed and cycle found
+    return false;  
+}
+
+bool isCyclicDir(vector<int> g[], int n){
+    //isVisited[i] ==0, means node 'i' is not unvisited
+    //isVisited[i] ==2, means node 'i' is in processing (workin on its nbrs)
+    //isVisited[i] == 1, means node 'i' has been processed
+    
+    vector<int> isVisited(n+1, 0);    //initially all nodes are unvisited
+
+    for(int node=1; node<=n; node++){
+
+        if(isVisited[node]==0){
+            if(isCyclicUtility(g, n, node, isVisited)){
+                return true;
+
+            }
+
+        }
+        return false;
+
+    }
 }
 
 void printGraph(vector<int> g[], int n){
@@ -64,6 +110,60 @@ void printGraph(vector<int> g[], int n){
 
     }
 }
+
+
+//--------CONNECTED COMPONENTS-----------
+//--ALGORITHM--
+/*
+    1) visit the nodes in a depth-first fashion
+    2) if the node is not visited, visit that node and its neighbour
+    recursively
+
+    Each time a unvisited node is found, a new componenent will be found.
+
+*/
+
+int getComponentSize( vector<int> g[], vector<bool> isVisited, int src){
+
+    int size=1; //initialize each new found componenet  must have size=1
+
+    if(isVisited[src]){
+        return 0;
+    }
+
+    vector<int> :: iterator it;
+    for( it = g[src].begin(); it!=g[src].end();  it++){
+
+        if(!isVisited[*it]){
+            size+=getComponentSize(g, isVisited, *it);
+        }
+
+    }
+
+
+return size;
+}  
+
+
+
+
+int noOfConnComponents(vector<int> g[], vector<bool> isVisited, int n){
+
+    vector<int> components;
+    
+    vector<bool> isVisited(n=1, false);
+
+    for(int node=1; node<=n; node++){
+        if(!isVisited[node]){  //new component found
+        components.push_back( getComponentSize(g, isVisited, node));
+
+        }
+    }
+
+
+}
+
+
 
 
 
