@@ -18,7 +18,7 @@ using namespace std;
                     return countSubSetsRecur(arr, n-1, sum);  //reject case
                 }
                 
-                return  countSubSetsRecur(arr, n-1, sum)+countSubSetsRecur(arr, n-1, sum-arr[n-1]);  //by excluding + rejecting
+                return  countSubSetsRecur(arr, n-1, sum)+countSubSetsRecur(arr, n-1, sum-arr[n-1]);  //adding both possibilities by excluding + rejecting
             }
 
 
