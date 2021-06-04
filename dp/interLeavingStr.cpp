@@ -3,6 +3,19 @@
 using namespace std;
 
 
+            /*-----REQUIREMENTS
+                1) Length of (s1+s2) = s3
+                2) substring of s1 & s2 should be in the same order
+                    in s3
+                3) count of unique characters in (s1+s2), should be the same in s3
+                */
+
+
+               /*------two pointer technique with memoization------
+            
+               */
+
+
 
 unordered_map<string, bool> mem;
 
