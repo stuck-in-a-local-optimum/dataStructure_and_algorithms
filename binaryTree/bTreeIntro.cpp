@@ -94,7 +94,7 @@ using namespace std;
 
             int pos = searchInorder(inOrder, start, end, curr);
             node->left = buildTree(preOrder, inOrder, start, pos-1);   //elements before pos in inOrder are the leftSubtree of curr element
-            node->right = buildTree(preOrder, inOrder, pos+1, end);    //elements before pos in inOrder are the leftSubtree of curr element
+            node->right = buildTree(preOrder, inOrder, pos+1, end);    //elements after pos in inOrder are the rightSubtree of curr element
 
             return node;
         }
