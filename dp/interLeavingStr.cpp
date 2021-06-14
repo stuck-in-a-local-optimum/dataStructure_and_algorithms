@@ -50,7 +50,9 @@ unordered_map<string, bool> mem;
 
             bool one = false;
             bool two = false;
+            
 
+            //in other cases we keep checking each char of p3 with each char of s1 & s2 that is they match or not
             if(s1[p1] == s3[p3])
                 one =  check(s1, s2, s3, len1, len2, len3, p1+1, p2, p3+1);
 
@@ -60,7 +62,7 @@ unordered_map<string, bool> mem;
 
 
             
-        return mem[key] = one || two;
+        return mem[key] = one || two;  //return and update the memoization map for each subproblem
 
           }
 
