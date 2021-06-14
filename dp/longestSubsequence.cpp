@@ -54,8 +54,9 @@ public:
                     if(text1[i-1]==text2[j-1]){   //if equal then select both characters
                 dpTable[i][j] = 1+dpTable[i-1][j-1];     
             }
-            else{
-                    dpTable[i][j] = max(dpTable[i-1][j], dpTable[i][j-1]);  //take max of both the possiblities by selecting only char from only one string
+            else{  //take max of both the possiblities by selecting only char from only one string to maintain longest LCS so far
+                    //because let say if we skip that char from str1 then we may have lCS so far of length 1 and if we skip that char from str2 then we may have LCS so far of length 0, so will take the case which gives us the maximum lcs length
+                    dpTable[i][j] = max(dpTable[i-1][j], dpTable[i][j-1]);  
                     
         }
         }
