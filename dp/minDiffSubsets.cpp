@@ -1,6 +1,10 @@
 #include <iostream>
 using namespace std;
 
+            /*-----MNIMUM DIFFERENCE SUBSETS-----
+            Divide a given array into two subsets such that
+            the difference of their sum  is minimum
+            */
 
             /*-------The approach-------
             1) since one of two subsets is larger than other, so let's assume s1 is less than equal to s2 (s1<=s2)
