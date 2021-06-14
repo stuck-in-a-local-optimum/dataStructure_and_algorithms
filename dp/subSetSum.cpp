@@ -2,6 +2,9 @@
 using namespace std;
 
 
+            /*------A SUBSET OF SUM EQUAL TO GIVEN VALUE EXISTS OR NOT*/
+
+
     bool isSubSetSumRecur(int set[], int n, int  sum){
         if(sum==0){  //we can achieve this sum by excluding all elements
             return true;
