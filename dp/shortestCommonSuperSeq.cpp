@@ -37,21 +37,30 @@ public:
    string shortestCommonSupersequence(string str1, string str2){
         string ans = "";
         string lcs = findLCS(str1,str2);
+
+        //if were required to find the length of SCS then it would be len(SCS) = l1 + l3 - LCS
         
         int p1=0,p2=0;
         for(char c: lcs)
         {
-            while(str1[p1]!=c)  //Add all non-LCS chars from str1
+            while(str1[p1]!=c){ //Add all non-LCS chars from str1
                 ans += str1[p1++];
-            while(str2[p2]!=c)  //Add all non-LCS chars from str2
+            }
+
+            while(str2[p2]!=c){  //Add all non-LCS chars from str2
                 ans += str2[p2++];
-            
-            ans += c;   //Add LCS-char and increment both ptrs
-            ++p1;
+            }
+
+            //so far our both pointers have reached the position where they matches with LCS-char 'c'
+            ans += c;   //Add this LCS-char 
+                       
+            ++p1;       //and now increment both ptrs because this LCS-char were in both strings at respective position (p1 and p2 so far)
             ++p2;
-        }
-        ans += str1.substr(p1) + str2.substr(p2);
-        return ans;
+        }    //keep repeating it till all LCS-char have been included in the ans only once
+
+
+        ans += str1.substr(p1) + str2.substr(p2);  //now add the rest (chars right after LCS) chars of both string in ans
+        return ans;                         
     }
     
 };
