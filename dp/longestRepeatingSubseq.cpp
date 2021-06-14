@@ -1,6 +1,12 @@
 
 #include <iostream>
 using namespace std;
+/*---------important observation
+    If we observe, finding LRS is same as finding LCS only difference is, here we
+    have contraint that we can't choose char in which have same index
+
+-----------*/
+    
 
 
 int LRS(string A) {
@@ -13,7 +19,7 @@ int LRS(string A) {
             if(i==0 || j==0){
                 dpTable[i][j]=0;
             }
-            else if(A[i-1]==A[j-1] && i!=j){
+            else if(A[i-1]==A[j-1] && i!=j){  
                 dpTable[i][j] = 1+dpTable[i-1][j-1];
             }
             else{
