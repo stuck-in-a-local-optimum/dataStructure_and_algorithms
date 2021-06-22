@@ -2,6 +2,22 @@
 #include <vector>
 #include <queue>
 using namespace std;
+				/*--- DIJKSTRA  -> SHORTEST PATH GRAPH (SPS)
+					ALGO IS SAME AS PRIMS'S ALGO, ONLY DIFFERENCE IS HERE WE ARE CONSIDERING
+					DISTANCE OF EACH NODE FROM 0th NODE ( lableValue[u] + graph[u][j])
+
+					1. main an array processed[] nodes
+					2. assign all nodes with distance value = INF, except source node (0)
+
+					Repeat the following unless all vertieces are included
+						1) pick min. value vertex which is not already processed
+						2) include this to selected node in processed array
+						3) update (relax) all the adjacent node distance
+								if new distance < old distance then update else skip
+
+				
+				
+				---*/
 
 #define V 6		//No of vertices
 
@@ -32,9 +48,9 @@ void dijkstra(int graph[V][V])
 
 	//Include (V-1) edges to cover all V-vertices
 	for(int i=0;i<V-1;++i)
-	{
+	{ 
 		//Select best Vertex by applying greedy method
-		int U = selectMinVertex(value,processed);
+		in t U = selectMinVertex(value,processed);
 		processed[U] = true;	//Include new Vertex in shortest Path Graph
 
 		//Relax adjacent vertices (not yet included in shortest path graph)
