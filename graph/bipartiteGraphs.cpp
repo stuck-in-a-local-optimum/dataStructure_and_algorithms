@@ -9,14 +9,14 @@ using namespace std;
                 1) Its vertices can be divided into two disjoint and independent
                 sets U and V such that every edge connects a vertex in U to one in V.
 
-                2) The graph does not contain any odd-length cycles
-                3) The graph is 2-colorable.
+                2) The graph does not contain any odd-length cycles (odd length cycle in a graph only possible if there is an edge b/w two vertices in a set and in that case graph is no longer is bipartite)
+                3) The graph is 2-colorable 
             */
 
            /*-----ALGO TO FIND A GRAPH IS BIPARTITE OR NOT-----
 
             1) Traverse the graph
-            2) if current node is of red color, paint its neighbour as blue.
+            2) if current node is of red color, paint its neighbour as blue. (to determine is graph contain odd lenght cycle)
 
             If we are able to color the graph successfully, then the graph is bipartite!
         
@@ -46,52 +46,52 @@ using namespace std;
 
 
             //this function will color the whole graph starting coloring with node 'u' with color 'clr'
-           bool color(vector<int> g[], int n, int node, vector<int> colorArr){
+        bool color(vector<int> g[], int n, int node, vector<int> colorArr){
 
-    colorArr[node] = 1;  // let's colr the first node with 1
+                    colorArr[node] = 1;  // let's colr the first node with 1
 
-    queue<int> myQ;
-    myQ.push(node);
-
-
-    while (!myQ.empty()) {
-        int curr =  myQ.front();
-        myQ.pop();
-
-        //now work on nbrs of curr
-
-        vector<int> :: iterator nbr;
-        for(nbr = g[curr].begin(); nbr!=g[curr].end(); nbr++){
-
-            if(colorArr[*nbr] == colorArr[curr]){
-                return false;
-            }
-
-            if(colorArr[*nbr]==-1){  //if nbr is uncolored  or unvisited node
-            colorArr[*nbr] = colorArr[curr] xor 1;  //color the nbr with opposite colr
-            myQ.push(*nbr);
-            }
-        }  
-    }
-
-    return true;  //all graphs are successsfully colored without any ambiguity then return true
-    
-}
+                    queue<int> myQ;
+                    myQ.push(node);
 
 
-bool isBipartite(vector<int> g[], int n){
-    vector<int> colorArr(n+1, -1);
+                    while (!myQ.empty()) {
+                        int curr =  myQ.front();
+                        myQ.pop();
 
-    for(int node=1; node<=n; node++){
-        if(colorArr[node]==-1){ //if node is uncolored
-            if(color(g, n, node, colorArr)){
-                return true;
-            }
+                        //now work on nbrs of curr
 
-        }
-    }
-    return false;
-    
+                        vector<int> :: iterator nbr;
+                        for(nbr = g[curr].begin(); nbr!=g[curr].end(); nbr++){
+
+                            if(colorArr[*nbr] == colorArr[curr]){ //if same then odd lenght cycle found (because if this happens than both the nodes are in same set)
+                                return false;
+                            }
+
+                            if(colorArr[*nbr]==-1){  //if nbr is uncolored  or unvisited node
+                            colorArr[*nbr] = colorArr[curr] xor 1;  //color the nbr with opposite colr
+                            myQ.push(*nbr);
+                            }
+                        }  
+                    }
+
+                    return true;  //all graphs are successsfully colored without any ambiguity then return true
+                    
+                }
+
+
+                bool isBipartite(vector<int> g[], int n){
+                    vector<int> colorArr(n+1, -1);
+
+                    for(int node=1; node<=n; node++){
+                        if(colorArr[node]==-1){ //if node is uncolored
+                            if(color(g, n, node, colorArr)){
+                                return true;
+                            }
+
+                        }
+                    }
+                    return false;
+                    
 }
 
 
