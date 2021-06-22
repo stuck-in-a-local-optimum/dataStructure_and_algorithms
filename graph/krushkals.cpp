@@ -1,5 +1,14 @@
 #include <iostream>
 #include <vector>
+
+        /* -------ALGORITHM-------
+            1. sort all edges in non-decreasing order of wt.
+            2. i) pick the smallest edge
+                ii) check if adding the edge forms CYCLE
+                iii) if no cycle is formed then include that edge in mst else exclude the edge
+
+                iv) repeat step (2) unless (v-1) edges are included
+        */
 using namespace std;
 
 struct node{
@@ -58,10 +67,11 @@ void printEgeList(vector<Edge> &edgeList){
 
 void kruskals(vector<Edge> &edgeList, int V, int E){
     int i=0; int j=0;
-    cout<<"Edge list before sorting\n";
-    printEgeList(edgeList);
-    cout<<"Edge list after sorting\n";
-    printEgeList(edgeList);
+    // cout<<"Edge list before sorting\n";
+    // printEgeList(edgeList);
+    sort(edgeList.begin(), edgeList.end(), myComparator );
+    // cout<<"Edge list after sorting\n";
+    // printEgeList(edgeList);
 
 
     int i=0; int j=0;
