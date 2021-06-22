@@ -2,6 +2,35 @@
 #include <vector>
 using namespace std;
 
+                /*---BELLMAN FORD ALGO (single source shortest path)
+
+                first a brief comparision with dijkstra's algo
+                -> Dijkstra and Bellman ford  both doesn't find shortest path for graphs
+                    with -ve edge weight cycle
+                -> Dijkstra can't detect if graph has -ve weight cycle while Bellman-ford can!
+                -> Dijkstra's runtime O(ElogV) and Bellman's runtime O(VE) so prefer Dijkstra if 
+                    already sure that graph doesn't contain -ve edge cycle, if graph contain -ve edge cycle
+                        then none of the algorithm will work for shortest path
+*/
+
+
+
+                    /*---THE ALGORITHM-------------
+                    1. Initialize all distance values as INF except source node (0)
+                    2. Repeat v-1 times:-
+                        if( d[u] + cost(uv) < d[v]) 
+                                then update d[u]
+                        else
+                            skip
+                    3. Relax all vertices once more, if we find any new 
+                        shortest distance value then we have -ve edge wt.
+                            cycle elses WE DON'T
+                    */
+
+
+
+
+
 struct edge{
     int src, dst, wt;
 
