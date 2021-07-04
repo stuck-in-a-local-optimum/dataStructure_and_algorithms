@@ -8,7 +8,7 @@ using namespace std;
 // function to create an edge
 void addEdge(vector<pair<int, int> > graph[], int u, int v, int w){
     graph[u].push_back(make_pair(v, w));
-    graph[v].push_back(make_pair(w, v));
+    graph[v].push_back(make_pair(u, w));
 }
 
 void dijkstras(vector<pair<int, int> > graph[], int src, int V){
