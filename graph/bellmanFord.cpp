@@ -90,6 +90,11 @@ void bellmanFord(vector<edge> &edges){
         cout<<"u->v: "<<parent[i]<<"->"<<"cost to reach "<<parent[i]<<" from source 0 = "<<value[i]<<"\n";
     }
 
+    for(int i=0; i<V; i++){
+        cout<<i<<": ";
+        cout<<costParent[i]<<"\n";
+    }
+
 }
 
 

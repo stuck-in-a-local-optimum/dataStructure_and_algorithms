@@ -27,6 +27,7 @@ void display(Node* head){
 
 //recursive approach
 void reverseLinkedList(Node* prev, Node* curr){
+    //termination conditions
     if(curr==NULL){
         return;  //if linkedlist is empty
     }
@@ -39,7 +40,7 @@ void reverseLinkedList(Node* prev, Node* curr){
 
 
         //otherwise
-    reverseLinkedList(NULL, curr->next);
+    reverseLinkedList(curr, curr->next);
     curr->next = prev;  //reverse each node after each call
 }
 
@@ -55,7 +56,7 @@ void reverseLinkedList2(Node* head){
     while(curr){  //work till last node
     save = curr->next;
     curr->next = prev;
-    prev = curr;
+    prev = curr; 
     curr = save;
 
     }

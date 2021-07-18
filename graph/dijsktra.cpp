@@ -50,7 +50,7 @@ void dijkstra(int graph[V][V])
 	for(int i=0;i<V-1;++i)
 	{ 
 		//Select best Vertex by applying greedy method
-		in t U = selectMinVertex(value,processed);
+		int U = selectMinVertex(value,processed);
 		processed[U] = true;	//Include new Vertex in shortest Path Graph
 
 		//Relax adjacent vertices (not yet included in shortest path graph)

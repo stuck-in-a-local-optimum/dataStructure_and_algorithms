@@ -29,6 +29,8 @@ using namespace std;
 
         }
 
+        
+
         void inOrder(struct Node* root){
 
             if(root==NULL){
