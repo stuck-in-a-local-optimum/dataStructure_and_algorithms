@@ -1,0 +1,89 @@
+//LEETCODE #743
+
+class Solution {
+    
+    public class Node{
+        int node;
+        int dist;
+        public Node(int node, int dist){
+            this.node = node;
+            this.dist = dist;
+
+        }
+    }
+
+
+    public int networkDelayTime(int[][] times, int n, int k) {
+        int[] dist = new int[n+1];
+
+        ArrayList<ArrayList<ArrayList<Integer> > >adj = new ArrayList<>();
+
+        for(int i=0; i<=n; i++){
+            adj.add(new ArrayList<>());
+        }
+
+        for(int i=0; i<times.length; i++){
+            int node = times[i][0];
+            int nbr = times[i][1];
+            int cost = times[i][2];
+
+            ArrayList<Integer> edge = new ArrayList<>();
+            edge.add(nbr);
+            edge.add(cost);
+            adj.get(node).add(new ArrayList(edge));
+
+        }
+        System.out.println(adj);
+
+
+
+        Comparator<Node> myComparator = (a, b)->{
+            return a.dist- b.dist;
+        };
+
+        PriorityQueue<Node> minHeap = new PriorityQueue<>(myComparator);
+
+        for(int node=0; node<=n; node++){
+            dist[node]= 99999999;
+        }
+
+        dist[k] = 0;
+        dist[0]=0;
+
+        minHeap.add(new Node(k, 0));
+
+        while(minHeap.size()!=0){
+            Node curr = minHeap.poll();
+
+            for( ArrayList<Integer> edge : adj.get(curr.node)){
+                int nbr = edge.get(0);
+                int cost = edge.get(1);
+
+                if(dist[curr.node]+cost < dist[nbr]){
+                    dist[nbr] = dist[curr.node]+cost;
+                    minHeap.add(new Node(nbr, dist[nbr]));
+                }
+            }
+
+        }
+
+        int ans=-1;
+
+
+        for(int t=1; t<=n ; t++){
+            if(dist[t]==99999999){
+                return -1;
+            }
+            else{
+                if(dist[t]>ans){
+                    ans = dist[t];
+                }
+            }
+
+
+
+        }
+        return ans;
+
+    }
+}
