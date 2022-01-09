@@ -1,5 +1,5 @@
 import java.util.*;
-public  class Prims {
+public  class PrimsModifieda {
     
     static class Node{
         int vrtx;
